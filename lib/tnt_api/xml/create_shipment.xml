@@ -1,0 +1,47 @@
+<soapenv:Body>
+  <cxf:expeditionCreation>
+      <parameters>
+        <accountNumber>06324676</accountNumber>
+        <shippingDate>2017-06-02</shippingDate>
+        <labelFormat>THERMAL</labelFormat>
+        <sender>
+            <name>TNT EXPRESS FRANCE</name>
+            <address1>58 AVENUE LECLERC</address1>
+            <address2></address2>
+            <zipCode>44119</zipCode>
+            <city>TREILLIERES</city>
+            <contactFirstName>HENRY</contactFirstName>
+            <contactLastName>DUPONT</contactLastName>
+            <emailAddress>henry.dupont@tnt.fr</emailAddress>
+            <phoneNumber>0102030405</phoneNumber>
+            <faxNumber>0101010102</faxNumber>
+        </sender>
+        <receiver>
+            <type>INDIVIDUAL</type>
+            <contactFirstName>Helene</contactFirstName>
+            <contactLastName>POCHET</contactLastName>
+            <address1>640 chemin de Saint Julien</address1>
+            <address2></address2>
+            <zipCode>19290</zipCode>
+            <city>MILLEVACHES</city>
+            <emailAddress>test@hotmail.fr</emailAddress>
+            <phoneNumber>0602030405</phoneNumber>
+            <accessCode>1234B</accessCode>
+            <buldingId>1</buldingId>
+            <floorNumber>5</floorNumber>
+            <instructions>PORTE GAUCHE</instructions>
+            <sendNotification>1</sendNotification>
+        </receiver>
+        <serviceCode>JZ</serviceCode>
+        <saturdayDelivery>0</saturdayDelivery>
+        <quantity>1</quantity>
+        <parcelsRequest>
+            <parcelRequest>
+              <sequenceNumber>1</sequenceNumber>
+              <customerReference></customerReference>
+              <weight>2</weight>
+            </parcelRequest>
+          </parcelsRequest>
+      </parameters>
+  </cxf:expeditionCreation>
+</soapenv:Body>
