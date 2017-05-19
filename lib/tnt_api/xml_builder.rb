@@ -30,7 +30,7 @@ class XmlBuilder < OpenStruct
   private
 
   def xml_path
-    [TntApi.root, 'lib', 'xml']
+    [TntApi.root_path, 'lib', 'xml']
   end
 
   def build_xml(file)

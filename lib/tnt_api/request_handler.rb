@@ -47,9 +47,7 @@ module TntApi
 
     def request_type
       case request_name
-      when :get_single_item_summary
-        'tracking'
-      when :create_shipment, :print_label
+      when :create_shipment
         'shipping'
       else
         error_message = "Request type #{request_name} is not supported"
@@ -60,8 +58,6 @@ module TntApi
 
     def wsdl
       case request_type
-      when 'tracking'
-        config.tracking_wsdl
       when 'shipping'
         config.shipping_wsdl
       end
@@ -69,10 +65,8 @@ module TntApi
 
     def endpoint
       case request_type
-        when 'tracking'
-          config.tracking_endpoint
-        when 'shipping'
-          config.shipping_endpoint
+      when 'shipping'
+        config.shipping_endpoint
       end
     end
 
@@ -87,7 +81,6 @@ module TntApi
 
       {
         username: config.username,
-        application_id: config.application_id,
         creation_date: creation_date,
         encoded_nonce: Base64.encode64(nonce),
         password_digest: Digest::SHA1.base64digest(
