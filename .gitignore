@@ -10,3 +10,11 @@
 
 # rspec failure tracking
 .rspec_status
+/.env
+/.DS_Store
+/lib/.DS_Store
+/lib/royal_mail_api/.DS_Store
+/spec/support/fixtures/.DS_Store
+/spec/support/fixtures/vcr_cassettes
+/*.gem
+/.idea/

@@ -31,5 +31,13 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_dependency "savon", "~> 2.10"
+  spec.add_dependency "httpclient", "~> 2.3"
+  spec.add_development_dependency "dotenv", "~> 2.0"
+  spec.add_dependency "activesupport", ">= 4"
+
+  # Testing
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "webmock", "~> 1.21"
+  spec.add_development_dependency "vcr", "~> 2.9"
 end
