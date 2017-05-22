@@ -5,7 +5,6 @@ module TntApi
         begin
           handler = TntApi::RequestHandler.new(request_name)
           xml = handler.build_xml(attrs)
-          binding.pry
           handler.savon.call(request_name, xml: xml)
         rescue Savon::SOAPFault => e
           raise TntApi::SoapError.new(xml: e.xml, error_code: e.http.code)
@@ -48,7 +47,7 @@ module TntApi
 
     def request_type
       case request_name
-      when :expeditionCreation
+      when :expedition_creation
         'shipping'
       else
         error_message = "Request type #{request_name} is not supported"
@@ -58,10 +57,14 @@ module TntApi
     end
 
     def wsdl
+      "https://www.tnt.fr/service/?wsdl"
     end
 
     def endpoint
-      config.endpoint
+      case request_type
+      when "shipping"
+        config.shipping_endpoint
+      end
     end
 
     def security_attrs

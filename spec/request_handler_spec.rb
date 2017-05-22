@@ -10,9 +10,10 @@ describe TntApi::RequestHandler do
   describe ".request" do
       context "when 'create_shipment' command is given" do
         it "returns tracking number" do
-          VCR.use_cassette('create_shipment') do
-            response = handler.request(:expeditionCreation, {})
-            expect(response).to eq(nil)
+          VCR.use_cassette('expedition_creation') do
+            response = handler.request(:expedition_creation, {})
+            parcel_number = response.body[:expedition_creation_response][:expedition][:parcel_responses][:parcel_number]
+            expect(parcel_number).not_to be_nil
           end
         end
       end
