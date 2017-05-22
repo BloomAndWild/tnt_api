@@ -2,7 +2,7 @@
   <cxf:expeditionCreation>
       <parameters>
         <accountNumber>06324676</accountNumber>
-        <shippingDate>2017-06-02</shippingDate>
+        <shippingDate>2017-05-23</shippingDate>
         <labelFormat>THERMAL</labelFormat>
         <sender>
             <name>TNT EXPRESS FRANCE</name>
