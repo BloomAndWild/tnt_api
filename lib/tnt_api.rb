@@ -11,6 +11,7 @@ require "tnt_api/error"
 require "tnt_api/request_handler"
 require "tnt_api/expedition_creation_response"
 require "tnt_api/xml_builder"
+require "tnt_api/xml_parser"
 
 module TntApi
   def self.root_path

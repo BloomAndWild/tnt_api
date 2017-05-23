@@ -1,8 +1,8 @@
 <soapenv:Body>
   <cxf:expeditionCreation>
       <parameters>
-        <accountNumber>06324676</accountNumber>
-        <shippingDate>2017-05-23</shippingDate>
+        <accountNumber><%= account_number %></accountNumber>
+        <shippingDate><%= shipping_date %></shippingDate>
         <labelFormat>THERMAL</labelFormat>
         <sender>
             <name>TNT EXPRESS FRANCE</name>
@@ -18,22 +18,22 @@
         </sender>
         <receiver>
             <type>INDIVIDUAL</type>
-            <contactFirstName>Helene</contactFirstName>
-            <contactLastName>POCHET</contactLastName>
-            <address1>640 chemin de Saint Julien</address1>
-            <address2></address2>
-            <zipCode>19290</zipCode>
-            <city>MILLEVACHES</city>
-            <emailAddress>test@hotmail.fr</emailAddress>
-            <phoneNumber>0602030405</phoneNumber>
-            <accessCode>1234B</accessCode>
-            <buldingId>1</buldingId>
-            <floorNumber>5</floorNumber>
-            <instructions>PORTE GAUCHE</instructions>
-            <sendNotification>1</sendNotification>
+            <contactFirstName><%= first_name %></contactFirstName>
+            <contactLastName><%= last_name %></contactLastName>
+            <address1><%= address_line1 %></address1>
+            <address2><%= address_line2 %></address2>
+            <zipCode><%= zip_code %></zipCode>
+            <city><%= city %></city>
+            <emailAddress><%= email %></emailAddress>
+            <phoneNumber><%= phone %></phoneNumber>
+            <accessCode><%= access_code %></accessCode>
+            <buldingId><%= building_id %></buldingId>
+            <floorNumber><%= floor_number %></floorNumber>
+            <instructions><%= instructions %></instructions>
+            <sendNotification><%= notify_receiver %></sendNotification>
         </receiver>
-        <serviceCode>JZ</serviceCode>
-        <saturdayDelivery>0</saturdayDelivery>
+        <serviceCode><%= service_code %></serviceCode>
+        <saturdayDelivery><%= saturday_delivery %></saturdayDelivery>
         <quantity>1</quantity>
         <parcelsRequest>
             <parcelRequest>
