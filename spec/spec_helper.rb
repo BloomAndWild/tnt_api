@@ -2,6 +2,9 @@ require 'vcr'
 require 'pry'
 
 require 'tnt_api'
+require 'dotenv'
+
+Dotenv.load
 
 require_relative 'support/helpers/client_helper'
 

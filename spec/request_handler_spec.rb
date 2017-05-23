@@ -5,8 +5,6 @@ describe TntApi::RequestHandler do
 
   let(:attributes) {
     {
-      account_number: "06324676",
-      shipping_date: Date.tomorrow,
       first_name: "Helene",
       last_name: "POCHET",
       address_line1: "640 chemin de Saint Julien",

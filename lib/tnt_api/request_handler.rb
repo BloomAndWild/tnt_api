@@ -68,21 +68,10 @@ module TntApi
     end
 
     def security_attrs
-      # TODO move into own value object
-
-      password = config.password
-      creation_date =  Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S')
-      nonce =  rand(999999).to_s
-
-      hashedpassword = Digest::SHA1.base64digest(password)
-
       {
         username: config.username,
-        creation_date: creation_date,
-        encoded_nonce: Base64.encode64(nonce),
-        password_digest: Digest::SHA1.base64digest(
-          nonce + creation_date + hashedpassword
-        )
+        password: config.password,
+        account_number: config.account_number,
       }
     end
 

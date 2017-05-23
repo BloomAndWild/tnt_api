@@ -1,6 +1,8 @@
 module TntApi
   class ExpedtitionCreationResponse
 
+    attr_accessor :object
+
     Response = Struct.new(
       :pdf_labels,
       :parcel_number,
@@ -8,7 +10,7 @@ module TntApi
     )
 
     def initialize(response)
-      parse(response)
+      @object = parse(response)
     end
 
     private
