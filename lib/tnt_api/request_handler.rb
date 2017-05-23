@@ -21,7 +21,7 @@ module TntApi
     end
 
     def build_xml(attrs={})
-      XmlBuilder.new(request_name, attrs.merge(security_attrs), request_type).build
+      TntApi::XmlBuilder.new(request_name, attrs.merge(security_attrs), request_type).build
     end
 
     def savon
