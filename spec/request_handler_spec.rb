@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe TntApi::RequestHandler do
-  let(:handler) { TntApi::RequestHandler }
+describe TNTApi::RequestHandler do
+  let(:handler) { TNTApi::RequestHandler }
 
   let(:attributes) {
     {
@@ -45,7 +45,7 @@ describe TntApi::RequestHandler do
           VCR.use_cassette('expedition_creation_with_invalid_attributes') do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
-            }.to raise_error(TntApi::SoapError)
+            }.to raise_error(TNTApi::SoapError)
           end
         end
       end

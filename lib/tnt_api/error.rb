@@ -1,4 +1,4 @@
-module TntApi
+module TNTApi
   class Error < StandardError
     attr_accessor :code, :description
 
@@ -36,7 +36,7 @@ module TntApi
 
       @xml = args[:xml]
       @code = args[:error_code]
-      @parser = TntApi::XmlParser.new
+      @parser = TNTApi::XmlParser.new
 
       set_faultcode
       set_faultstring

@@ -1,4 +1,4 @@
-module TntApi
+module TNTApi
  class Client
     class << self
       attr_reader :config, :errors

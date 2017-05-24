@@ -1,4 +1,4 @@
-module TntApi
+module TNTApi
   class ResponseHandler
     class << self
       def handle_response(response, type)

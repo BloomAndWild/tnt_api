@@ -14,7 +14,7 @@ require "tnt_api/expedition_creation_response"
 require "tnt_api/xml_builder"
 require "tnt_api/xml_parser"
 
-module TntApi
+module TNTApi
   def self.root_path
     File.dirname __dir__
   end

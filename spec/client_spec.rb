@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TntApi::Client do
+describe TNTApi::Client do
   describe ".configuration" do
-    let(:client) { TntApi::Client }
+    let(:client) { TNTApi::Client }
     let(:config) { client.config }
 
     before do

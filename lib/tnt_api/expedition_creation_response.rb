@@ -1,4 +1,4 @@
-module TntApi
+module TNTApi
   class ExpedtitionCreationResponse
 
     attr_accessor :object

@@ -1,4 +1,4 @@
-module TntApi
+module TNTApi
   class XmlParser
     def parse(xml, attr, force_remove_namespaces=false)
       unless xml.is_a? Nokogiri::XML::Element || force_remove_namespaces

@@ -1,7 +1,7 @@
 require 'erb'
 require 'ostruct'
 
-module TntApi
+module TNTApi
   class XmlBuilder < OpenStruct
     attr_reader :request, :type
 
@@ -31,7 +31,7 @@ module TntApi
     private
 
     def xml_path
-      [TntApi.root_path, 'lib', 'xml']
+      [TNTApi.root_path, 'lib', 'xml']
     end
 
     def build_xml(file)

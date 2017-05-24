@@ -5,7 +5,7 @@ require 'tnt_api/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "tnt_api"
-  spec.version       = TntApi::VERSION
+  spec.version       = TNTApi::VERSION
   spec.authors       = ["Gediminas"]
   spec.email         = ["gediminas@bloomandwild.com"]
 

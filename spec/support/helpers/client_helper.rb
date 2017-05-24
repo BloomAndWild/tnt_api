@@ -1,5 +1,5 @@
 def configure_client
-  TntApi::Client.configure do |config|
+  TNTApi::Client.configure do |config|
     config.shipping_endpoint = "http://www.tnt.fr/service/"
     config.username = ENV['USERNAME']
     config.password = ENV['PASSWORD']

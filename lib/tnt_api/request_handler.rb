@@ -1,13 +1,13 @@
-module TntApi
+module TNTApi
   class RequestHandler
     class << self
       def request(request_name, attrs={})
         begin
-          handler = TntApi::RequestHandler.new(request_name)
+          handler = TNTApi::RequestHandler.new(request_name)
           xml = handler.build_xml(attrs)
           handler.savon.call(request_name, xml: xml)
         rescue Savon::SOAPFault => e
-          raise TntApi::SoapError.new(xml: e.xml, error_code: e.http.code)
+          raise TNTApi::SoapError.new(xml: e.xml, error_code: e.http.code)
         end
       end
 
@@ -21,7 +21,7 @@ module TntApi
     end
 
     def build_xml(attrs={})
-      TntApi::XmlBuilder.new(request_name, attrs.merge(security_attrs), request_type).build
+      TNTApi::XmlBuilder.new(request_name, attrs.merge(security_attrs), request_type).build
     end
 
     def savon
