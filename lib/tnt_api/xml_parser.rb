@@ -9,10 +9,6 @@ module TNTApi
       xml.css(attr)
     end
 
-    def parse_all(xml, attr, force_remove_namespaces=false)
-      parse(xml, "//#{attr}", force_remove_namespaces)
-    end
-
     def parse_text(xml, attr, force_remove_namespaces=false)
       parse(xml, attr, force_remove_namespaces).text
     end
