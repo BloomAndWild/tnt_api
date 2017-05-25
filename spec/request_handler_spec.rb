@@ -36,7 +36,9 @@ describe TNTApi::RequestHandler do
         it "returns successful response" do
           VCR.use_cassette('expedition_creation_with_valid_attributes') do
             response = handler.request(:expedition_creation, valid_attributes)
-            expect(response.successful?).to eq(true)
+            expect(response.pdf_labels).to_not be_nil
+            expect(response.parcel_number).to_not be_nil
+            expect(response.tracking_url).to_not be_nil
           end
         end
       end

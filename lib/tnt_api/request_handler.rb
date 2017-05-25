@@ -5,7 +5,8 @@ module TNTApi
         begin
           handler = TNTApi::RequestHandler.new(request_name)
           xml = handler.build_xml(attrs)
-          handler.savon.call(request_name, xml: xml)
+          tnt_response = handler.savon.call(request_name, xml: xml)
+          TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
         rescue Savon::SOAPFault => e
           raise TNTApi::SoapError.new(xml: e.xml, error_code: e.http.code)
         end
