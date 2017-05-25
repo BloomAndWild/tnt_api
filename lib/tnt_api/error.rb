@@ -3,7 +3,7 @@ module TNTApi
     attr_accessor :code, :description
 
     def initialize(args)
-      raise ArgumentError 'royal mail error must be initialized with a hash' unless args.is_a? Hash
+      raise ArgumentError 'tnt error must be initialized with a hash' unless args.is_a? Hash
       raise ArgumentError 'error must contain some information' unless args.present?
     end
   end

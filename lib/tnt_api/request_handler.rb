@@ -57,13 +57,16 @@ module TNTApi
     end
 
     def wsdl
-      "https://www.tnt.fr/service/?wsdl"
+      case request_type
+      when "shipping"
+        config.service_wsdl
+      end
     end
 
     def endpoint
       case request_type
       when "shipping"
-        config.shipping_endpoint
+        config.service_endpoint
       end
     end
 
