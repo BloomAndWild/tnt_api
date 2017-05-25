@@ -8,7 +8,7 @@ module TNTApi
           tnt_response = handler.savon.call(request_name, xml: xml)
           TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
         rescue Savon::SOAPFault => e
-          raise TNTApi::SoapError.new(xml: e.xml, error_code: e.http.code)
+          raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
         end
       end
 

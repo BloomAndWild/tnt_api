@@ -47,7 +47,7 @@ describe TNTApi::RequestHandler do
           VCR.use_cassette('expedition_creation_with_invalid_attributes') do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
-            }.to raise_error(TNTApi::SoapError)
+            }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not a valid date according to the pattern : yyyy-MM-dd; The field 'shippingDate' is not valid.")
           end
         end
       end
