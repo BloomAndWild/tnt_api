@@ -2,14 +2,12 @@ module TNTApi
   class RequestHandler
     class << self
       def request(request_name, attrs={})
-        begin
-          handler = TNTApi::RequestHandler.new(request_name)
-          xml = handler.build_xml(attrs)
-          tnt_response = handler.savon.call(request_name, xml: xml)
-          TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
-        rescue Savon::SOAPFault => e
-          raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
-        end
+        handler = TNTApi::RequestHandler.new(request_name)
+        xml = handler.build_xml(attrs)
+        tnt_response = handler.savon.call(request_name, xml: xml)
+        TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
+      rescue Savon::SOAPFault => e
+        raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
       end
 
       def config
@@ -31,9 +29,6 @@ module TNTApi
         wsdl: wsdl,
         endpoint: endpoint,
         namespace: endpoint,
-        ssl_ca_cert_file: config.ssl_ca_cert_file,
-        ssl_cert_file: config.ssl_cert_file,
-        ssl_cert_key_file: config.ssl_cert_key_file,
         open_timeout: 600,
         read_timeout: 600,
         logger: config.logger,

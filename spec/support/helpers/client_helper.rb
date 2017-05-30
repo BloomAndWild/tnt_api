@@ -4,7 +4,5 @@ def configure_client
     config.username = ENV['USERNAME']
     config.password = ENV['PASSWORD']
     config.logger = Logger.new(STDOUT)
-    config.service_endpoint = "http://www.tnt.fr/service/"
-    config.service_wsdl  = "https://www.tnt.fr/service/?wsdl"
   end
 end

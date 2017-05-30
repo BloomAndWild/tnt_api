@@ -2,7 +2,7 @@
   <cxf:expeditionCreation>
       <parameters>
         <accountNumber><%= account_number %></accountNumber>
-        <shippingDate><%= shipping_date %></shippingDate>
+        <shippingDate><%= shipping_date.to_date %></shippingDate>
         <labelFormat>THERMAL</labelFormat>
         <sender>
             <name>TNT EXPRESS FRANCE</name>
@@ -30,16 +30,16 @@
             <buldingId><%= building_id %></buldingId>
             <floorNumber><%= floor_number %></floorNumber>
             <instructions><%= instructions %></instructions>
-            <sendNotification><%= notify_receiver %></sendNotification>
+            <sendNotification><%= notify_receiver ? "1" : "0" %></sendNotification>
         </receiver>
         <serviceCode><%= service_code %></serviceCode>
-        <saturdayDelivery><%= saturday_delivery %></saturdayDelivery>
+        <saturdayDelivery><%= saturday_delivery ? "1" : "0" %></saturdayDelivery>
         <quantity>1</quantity>
         <parcelsRequest>
             <parcelRequest>
               <sequenceNumber>1</sequenceNumber>
               <customerReference></customerReference>
-              <weight>2</weight>
+              <weight>1</weight>
             </parcelRequest>
           </parcelsRequest>
       </parameters>

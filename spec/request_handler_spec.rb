@@ -17,14 +17,14 @@ describe TNTApi::RequestHandler do
       building_id: "1",
       floor_number: "5",
       instructions: "PORTE GAUCHE",
-      notify_receiver: 0,
+      notify_receiver: false,
       service_code: "JZ",
-      saturday_delivery: 0,
+      saturday_delivery: false,
     }
   }
 
   let(:valid_attributes) { attributes.merge({ shipping_date: Date.tomorrow }) }
-  let(:invalid_attributes) { attributes.merge({ shipping_date: "?" }) }
+  let(:invalid_attributes) { attributes.merge({ shipping_date: Date.yesterday }) }
 
   before do
     configure_client
@@ -47,7 +47,7 @@ describe TNTApi::RequestHandler do
           VCR.use_cassette('expedition_creation_with_invalid_attributes') do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
-            }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not a valid date according to the pattern : yyyy-MM-dd; The field 'shippingDate' is not valid.")
+            }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not valid.")
           end
         end
       end
