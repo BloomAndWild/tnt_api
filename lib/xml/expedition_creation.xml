@@ -2,7 +2,7 @@
   <cxf:expeditionCreation>
       <parameters>
         <accountNumber><%= account_number %></accountNumber>
-        <shippingDate><%= shipping_date.to_date %></shippingDate>
+        <shippingDate><%= shipping_date.to_s %></shippingDate>
         <labelFormat>THERMAL</labelFormat>
         <sender>
             <name>TNT EXPRESS FRANCE</name>
