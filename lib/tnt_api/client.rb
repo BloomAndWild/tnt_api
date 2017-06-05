@@ -6,8 +6,8 @@ module TNTApi
      def configure
        raise ArgumentError, "block not given" unless block_given?
 
-        @config = Config.new
-        yield config
+       @config = Config.new
+       yield config
       end
     end
   end
