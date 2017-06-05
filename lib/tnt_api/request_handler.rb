@@ -1,26 +1,51 @@
 module TNTApi
   class RequestHandler
     class << self
-      def request(request_name, attrs={})
-        handler = TNTApi::RequestHandler.new(request_name)
-        xml = handler.build_xml(attrs)
-        tnt_response = handler.savon.call(request_name, xml: xml)
-        TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
-      rescue Savon::SOAPFault => e
-        raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
-      end
-
-      def config
-        Client.config
+      def request(request_name, attrs)
+        new(request_name, attrs).request
       end
     end
 
-    def initialize(request_name)
+    def initialize(request_name, attrs)
       @request_name = request_name
+      @attrs = attrs
     end
 
-    def build_xml(attrs={})
-      TNTApi::XmlBuilder.new(request_name, attrs.merge(security_attrs), request_type).build
+    def request
+      xml = build_xml(attrs)
+
+      tnt_response = savon.call(request_name, xml: xml)
+      TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
+    rescue Savon::SOAPFault => e
+      raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
+    end
+
+    def config
+      Client.config
+    end
+
+    def build_xml(attrs)
+      TNTApi::XmlBuilder.new(request_name, build_attrs(attrs), request_type).build
+    end
+
+    def build_attrs(attrs)
+      attrs.merge!(shipping_date: formatted_date(attrs[:shipping_date]))
+      attrs.merge!(security_attrs)
+
+      coder = HTMLEntities.new
+      attrs.slice(:first_name, :last_name, :address_line1, :address_line2, :instructions).each do |k, v|
+        attrs[k] = coder.encode(v, :decimal)
+      end
+
+      attrs
+    end
+
+    def formatted_date(shipping_date)
+      if shipping_date.is_a?(Date)
+        shipping_date.to_s
+      else
+        shipping_date
+      end
     end
 
     def savon
@@ -39,7 +64,7 @@ module TNTApi
     end
 
     private
-    attr_accessor :request_name
+    attr_accessor :request_name, :attrs
 
     def request_type
       case request_name
@@ -72,10 +97,6 @@ module TNTApi
         password: config.password,
         account_number: config.account_number,
       }
-    end
-
-    def config
-      self.class.config
     end
   end
 end

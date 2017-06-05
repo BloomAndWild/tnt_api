@@ -3,6 +3,7 @@ require 'base64'
 require 'savon'
 require 'digest/sha1'
 require "active_support/core_ext/string"
+require 'htmlentities'
 
 require "tnt_api/version"
 require "tnt_api/client"
