@@ -1,13 +1,13 @@
 module TNTApi
- class Client
-   class << self
-     attr_reader :config, :errors
+  class Client
+    class << self
+      attr_reader :config, :errors
 
-     def configure
-       raise ArgumentError, "block not given" unless block_given?
+      def configure
+        raise ArgumentError, "block not given" unless block_given?
 
-       @config = Config.new
-       yield config
+        @config = Config.new
+        yield config
       end
     end
   end
