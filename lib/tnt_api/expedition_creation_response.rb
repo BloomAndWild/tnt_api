@@ -1,5 +1,5 @@
 module TNTApi
-  class ExpedtitionCreationResponse
+  class ExpeditionCreationResponse
 
     attr_accessor :pdf_labels, :parcel_number, :tracking_url
 
