@@ -43,3 +43,47 @@ TNTApi::Client.configure do |config|
   config.account_number = # your account_number
 end
 ```
+
+### Expedition Creation (create shipment) request
+
+```
+TNTApi::RequestHandler.request(
+  :expedition_creation,
+  attributes,
+)
+```
+
+Sender attributes:
+
+sender_name
+sender_address_line1
+sender_address_line2
+sender_zip_code
+sender_city
+sender_contact_first_name
+sender_contact_last_name
+sender_email
+sender_phone
+
+recipient attributes:
+
+first_name
+last_name
+address_line1
+address_line2
+zip_code
+city
+email
+phone
+access_code
+building_id
+floor_number
+instructions
+notify_receiver
+
+expedition attributes:
+
+service_code
+saturday_delivery
+shipping_date
+weight
