@@ -12,7 +12,7 @@ module TNTApi
 
     def message
       parser = TNTApi::XmlParser.new
-      parser.parse_text(@xml, "faultstring")[0..-2].gsub(/\R/, '; ')
+      parser.parse_text(@xml, "faultstring")[0..-2].gsub(/\R/, ' ')
     end
   end
 end

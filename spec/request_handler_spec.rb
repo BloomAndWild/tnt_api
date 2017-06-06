@@ -58,11 +58,31 @@ describe TNTApi::RequestHandler do
       end
 
       context "with invalid attributes" do
-        it "raise SOAP error" do
+        it "raises a TNTApi::TntError error" do
           VCR.use_cassette('expedition_creation_with_invalid_attributes') do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
             }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not valid.")
+          end
+        end
+
+        context "with multiple attributes" do
+          let(:invalid_attributes) do
+            attributes.merge(
+              shipping_date: Date.yesterday,
+              address_line1: "",
+            )
+          end
+
+          it "raises a TNTApi::TntError error with multiple errors in the message" do
+            VCR.use_cassette('expedition_creation_with_multiple_invalid_attributes') do
+              expect {
+                handler.request(:expedition_creation, invalid_attributes)
+              }.to raise_error(
+                TNTApi::TntError,
+                "The field 'receiver.address1' is mandatory. The field 'shippingDate' is not valid.",
+              )
+            end
           end
         end
       end
