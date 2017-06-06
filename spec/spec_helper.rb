@@ -7,6 +7,7 @@ require 'dotenv'
 Dotenv.load
 
 require_relative 'support/helpers/client_helper'
+require_relative 'support/helpers/date_helper'
 
 VCR.configure do |c|
   c.hook_into :webmock
@@ -20,7 +21,8 @@ end
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
-
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
