@@ -12,7 +12,7 @@ module TNTApi
     end
 
     def request
-      xml = build_xml(attrs)
+      xml = build_xml(attrs.merge(security_attrs))
 
       tnt_response = savon.call(request_name, xml: xml)
       TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
@@ -25,27 +25,7 @@ module TNTApi
     end
 
     def build_xml(attrs)
-      TNTApi::XmlBuilder.new(request_name, build_attrs(attrs), request_type).build
-    end
-
-    def build_attrs(attrs)
-      attrs.merge!(shipping_date: formatted_date(attrs[:shipping_date]))
-      attrs.merge!(security_attrs)
-
-      coder = HTMLEntities.new
-      attrs.slice(:first_name, :last_name, :address_line1, :address_line2, :instructions).each do |k, v|
-        attrs[k] = coder.encode(v, :decimal)
-      end
-
-      attrs
-    end
-
-    def formatted_date(shipping_date)
-      if shipping_date.is_a?(Date)
-        shipping_date.to_s
-      else
-        shipping_date
-      end
+      TNTApi::XMLBuilder.new(request_name, attrs, request_type).build
     end
 
     def savon

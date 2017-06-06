@@ -45,7 +45,7 @@ describe TNTApi::RequestHandler do
       end
 
       context "when request contains special characters" do
-        let(:valid_attributes) { attributes.merge(address_line2: "àéïô") }
+        let(:valid_attributes) { attributes.merge(address_line2: "àéïø") }
 
         it "returns successful response" do
           VCR.use_cassette('expedition_creation_with_special_characters') do

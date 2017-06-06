@@ -3,6 +3,7 @@ require 'base64'
 require 'savon'
 require 'digest/sha1'
 require "active_support/core_ext/string"
+require "active_support/core_ext/hash"
 require 'htmlentities'
 
 require "tnt_api/version"
@@ -14,6 +15,7 @@ require "tnt_api/response_handler"
 require "tnt_api/expedition_creation_response"
 require "tnt_api/xml_builder"
 require "tnt_api/xml_parser"
+require "tnt_api/xml_formatter"
 
 module TNTApi
   def self.root_path
