@@ -73,6 +73,8 @@ describe TNTApi::RequestHandler do
 
       describe "authorized special characters" do
         context "when a field contains 32 decomposed unicode characters" do
+          # decomposed characters are represented as a two unicode values (letter + accent)
+          # therefore the string below has a length of 64
           let(:valid_attributes) { attributes.merge(address_line2: "àâäéèêëîïôöùûüñÀÂÄÉÈÊËÎÏÔÖÙÛÜÑÇç") }
 
           it "returns successful response" do
@@ -86,6 +88,7 @@ describe TNTApi::RequestHandler do
         end
 
         context "when a field contains 32 composed unicode characters" do
+          # precomposed characters are represented as a single unicode value
           let(:valid_attributes) { attributes.merge(address_line2: "àâäéèêëîïôöùûüñÀÂÄÉÈÊËÎÏÔÖÙÛÜÑÇç") }
 
           it "returns successful response" do
