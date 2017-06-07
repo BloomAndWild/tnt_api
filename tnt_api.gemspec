@@ -35,7 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "httpclient", "~> 2.3"
   spec.add_development_dependency "dotenv", "~> 2.0"
   spec.add_dependency "activesupport", ">= 4"
-  spec.add_dependency "htmlentities", "~> 4.3.4"
 
   # Testing
   spec.add_development_dependency "rspec", "~> 3.0"

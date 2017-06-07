@@ -7,6 +7,7 @@ describe TNTApi::XMLFormatter  do
         first_name: "éåøîü&",
         last_name: "&<>'",
         zip_code: 19290,
+        address_line1: "aA0ç #_@!.$",
         notify_receiver: false,
         shipping_date: get_next_day(Date.today, 2),
       }
@@ -44,12 +45,17 @@ describe TNTApi::XMLFormatter  do
         end
       end
 
-      xdescribe "unauthorized special characters" do
-        let(:special_characters) do
-          ""
+      describe "unauthorized special characters" do
+        let(:unauthorized_characters) do
+          "~`¢"
         end
-        it "converts to html decimal entities" do
-          #TODO
+
+        before do
+          attrs[:address_line2] = unauthorized_characters
+        end
+
+        it "converts to html decimal entities (with XML escaping)" do
+          expect(subject[:address_line2]).to eq("&amp;#126;&amp;#96;&amp;#162;")
         end
       end
 
@@ -58,6 +64,10 @@ describe TNTApi::XMLFormatter  do
           expect(subject[:last_name]).to eq "&amp;&lt;&gt;&apos;"
         end
       end
+    end
+
+    it "doesn't convert authorized characters to html entities" do
+      expect(subject[:address_line1]).to eq("aA0ç #_@!.$")
     end
 
     it "doesn't modify integer attrs" do
