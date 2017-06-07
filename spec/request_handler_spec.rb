@@ -71,17 +71,36 @@ describe TNTApi::RequestHandler do
         end
       end
 
-      context "when request contains special characters" do
-        let(:valid_attributes) { attributes.merge(address_line2: "àéïø") }
+      describe "authorized special characters" do
+        context "when a field contains 32 decomposed unicode characters" do
+          let(:valid_attributes) { attributes.merge(address_line2: "àâäéèêëîïôöùûüñÀÂÄÉÈÊËÎÏÔÖÙÛÜÑÇç") }
 
-        it "returns successful response" do
-          VCR.use_cassette('expedition_creation_with_special_characters') do
-            response = handler.request(:expedition_creation, valid_attributes)
-            expect(response.pdf_labels).to_not be_nil
-            expect(response.parcel_number).to_not be_nil
-            expect(response.tracking_url).to_not be_nil
+          it "returns successful response" do
+            VCR.use_cassette('expedition_creation_with_decomposed_special_characters') do
+              response = handler.request(:expedition_creation, valid_attributes)
+              expect(response.pdf_labels).to_not be_nil
+              expect(response.parcel_number).to_not be_nil
+              expect(response.tracking_url).to_not be_nil
+            end
           end
         end
+
+        context "when a field contains 32 composed unicode characters" do
+          let(:valid_attributes) { attributes.merge(address_line2: "àâäéèêëîïôöùûüñÀÂÄÉÈÊËÎÏÔÖÙÛÜÑÇç") }
+
+          it "returns successful response" do
+            VCR.use_cassette('expedition_creation_with_composed_special_characters') do
+              response = handler.request(:expedition_creation, valid_attributes)
+              expect(response.pdf_labels).to_not be_nil
+              expect(response.parcel_number).to_not be_nil
+              expect(response.tracking_url).to_not be_nil
+            end
+          end
+        end
+      end
+
+      xdescribe "unauthorized characters" do
+        #TODO
       end
 
       context "with invalid attributes" do
