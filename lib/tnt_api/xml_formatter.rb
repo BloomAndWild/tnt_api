@@ -49,9 +49,5 @@ module TNTApi
     def escape_xml_chars(str)
       str.gsub(/["&'<>]/, XML_SPECIAL_CHARACTER_MAP)
     end
-
-    def html_encoder
-      HTMLEntities.new
-    end
   end
 end
