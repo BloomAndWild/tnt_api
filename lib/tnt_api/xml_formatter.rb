@@ -17,10 +17,7 @@ module TNTApi
     def format_attrs(attrs)
       attrs.each do |k, v|
         next unless v.is_a?(String)
-
-        attrs[k] = escape_xml_chars(
-          html_encoder.encode(v, :decimal)
-        )
+        attrs[k] = escape_xml_chars(v.unicode_normalize)
       end
 
       attrs[:shipping_date] = attrs[:shipping_date].to_s
