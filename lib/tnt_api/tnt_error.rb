@@ -1,5 +1,5 @@
 module TNTApi
-  class TntError < StandardError
+  class TNTError < StandardError
     attr_accessor :xml, :code
 
     def initialize(args)

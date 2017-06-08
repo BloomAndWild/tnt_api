@@ -90,7 +90,7 @@ weight
 
 ### Error handling
 
-If a request fails, a `TNTApi::TntError` will be raised.
+If a request fails, a `TNTApi::TNTError` will be raised.
 You can call `.message` on this object to get the error messages from TNT.
 
 You can also call `.attributes` to get the formatted values passed to TNT for debugging.
