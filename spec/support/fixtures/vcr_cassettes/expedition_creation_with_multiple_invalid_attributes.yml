@@ -943,7 +943,7 @@ http_interactions:
                     <type>INDIVIDUAL</type>
                     <contactFirstName>Helene</contactFirstName>
                     <contactLastName>POCHET</contactLastName>
-                    <address1>640 chemin de Saint Julien</address1>
+                    <address1></address1>
                     <address2></address2>
                     <zipCode>19290</zipCode>
                     <city>MILLEVACHES</city>
@@ -982,7 +982,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '2237'
+      - '2211'
   response:
     status:
       code: 500
@@ -993,7 +993,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '334'
+      - '378'
       X-Ua-Compatible:
       - IE=edge
       Connection:
@@ -1001,7 +1001,8 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><soap:Fault><faultcode>soap:Server</faultcode><faultstring>The field 'shippingDate' is not valid.
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><soap:Fault><faultcode>soap:Server</faultcode><faultstring>The field 'receiver.address1' is mandatory.
+        The field 'shippingDate' is not valid.
         </faultstring><detail><ns1:ServiceException xmlns:ns1="http://cxf.ws.app.tnt.fr/"></ns1:ServiceException></detail></soap:Fault></soap:Body></soap:Envelope>
     http_version: 
   recorded_at: Wed, 07 Jun 2017 12:39:20 GMT

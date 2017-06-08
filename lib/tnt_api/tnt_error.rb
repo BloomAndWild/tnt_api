@@ -11,8 +11,8 @@ module TNTApi
     end
 
     def message
-      parser = TNTApi::XmlParser.new
-      parser.parse_text(@xml, "faultstring")[0..-2].gsub(/\R/, '; ')
+      parser = TNTApi::XMLParser.new
+      parser.parse_text(@xml, "faultstring")[0..-2].gsub(/\R/, ' ')
     end
   end
 end

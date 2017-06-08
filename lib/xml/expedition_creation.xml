@@ -2,19 +2,18 @@
   <cxf:expeditionCreation>
       <parameters>
         <accountNumber><%= account_number %></accountNumber>
-        <shippingDate><%= shipping_date.to_s %></shippingDate>
+        <shippingDate><%= shipping_date %></shippingDate>
         <labelFormat>THERMAL</labelFormat>
         <sender>
-            <name>TNT EXPRESS FRANCE</name>
-            <address1>58 AVENUE LECLERC</address1>
-            <address2></address2>
-            <zipCode>44119</zipCode>
-            <city>TREILLIERES</city>
-            <contactFirstName>HENRY</contactFirstName>
-            <contactLastName>DUPONT</contactLastName>
-            <emailAddress>henry.dupont@tnt.fr</emailAddress>
-            <phoneNumber>0102030405</phoneNumber>
-            <faxNumber>0101010102</faxNumber>
+            <name><%= sender_name %></name>
+            <address1><%= sender_address_line1 %></address1>
+            <address2><%= sender_address_line2 %></address2>
+            <zipCode><%= sender_zip_code %></zipCode>
+            <city><%= sender_city %></city>
+            <contactFirstName><%= sender_contact_first_name %></contactFirstName>
+            <contactLastName><%= sender_contact_last_name %></contactLastName>
+            <emailAddress><%= sender_email %></emailAddress>
+            <phoneNumber><%= sender_phone %></phoneNumber>
         </sender>
         <receiver>
             <type>INDIVIDUAL</type>
@@ -39,7 +38,7 @@
             <parcelRequest>
               <sequenceNumber>1</sequenceNumber>
               <customerReference></customerReference>
-              <weight>1</weight>
+              <weight><%= weight %></weight>
             </parcelRequest>
           </parcelsRequest>
       </parameters>

@@ -2,26 +2,15 @@ require 'erb'
 require 'ostruct'
 
 module TNTApi
-  class XmlBuilder < OpenStruct
+  class XMLBuilder < OpenStruct
     attr_reader :request, :type
-
-    SPECIAL_CHARACTER_MAP = {
-      '"' => "&quot;",
-      "&" => "&amp;",
-      "'" => "&apos;",
-      "<" => "&lt;",
-      ">" => "&gt;"
-    }
 
     def initialize(request, attrs={}, type='shipping')
       @request = request
       @type = type
 
-      attrs = attrs.reduce({}) do |hash,(k,v)|
-        hash[k]=parse_special_characters(v); hash
-      end
-
-      super attrs
+      formatted_attrs = TNTApi::XMLFormatter.format_attrs(attrs)
+      super formatted_attrs
     end
 
     def build
@@ -49,11 +38,6 @@ module TNTApi
 
     def envelope
       build_xml("#{type}_envelope.xml")
-    end
-
-    def parse_special_characters(str)
-      return str unless str.is_a? String
-      str.gsub(/["&'<>]/, SPECIAL_CHARACTER_MAP)
     end
   end
 end

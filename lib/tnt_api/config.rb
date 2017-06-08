@@ -1,11 +1,7 @@
 module TNTApi
   class Config
-    attr_accessor :service_endpoint,
-      :service_wsdl,
-      :username,
-      :password,
-      :logger,
-      :account_number
+    attr_writer :service_endpoint, :service_wsdl
+    attr_accessor :username, :password, :logger, :account_number
 
     def service_wsdl
       @service_wsdl ||= "https://www.tnt.fr/service/?wsdl"
