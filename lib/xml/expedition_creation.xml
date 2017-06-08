@@ -1,0 +1,46 @@
+<soapenv:Body>
+  <cxf:expeditionCreation>
+      <parameters>
+        <accountNumber><%= account_number %></accountNumber>
+        <shippingDate><%= shipping_date %></shippingDate>
+        <labelFormat>THERMAL</labelFormat>
+        <sender>
+            <name><%= sender_name %></name>
+            <address1><%= sender_address_line1 %></address1>
+            <address2><%= sender_address_line2 %></address2>
+            <zipCode><%= sender_zip_code %></zipCode>
+            <city><%= sender_city %></city>
+            <contactFirstName><%= sender_contact_first_name %></contactFirstName>
+            <contactLastName><%= sender_contact_last_name %></contactLastName>
+            <emailAddress><%= sender_email %></emailAddress>
+            <phoneNumber><%= sender_phone %></phoneNumber>
+        </sender>
+        <receiver>
+            <type>INDIVIDUAL</type>
+            <contactFirstName><%= first_name %></contactFirstName>
+            <contactLastName><%= last_name %></contactLastName>
+            <address1><%= address_line1 %></address1>
+            <address2><%= address_line2 %></address2>
+            <zipCode><%= zip_code %></zipCode>
+            <city><%= city %></city>
+            <emailAddress><%= email %></emailAddress>
+            <phoneNumber><%= phone %></phoneNumber>
+            <accessCode><%= access_code %></accessCode>
+            <buldingId><%= building_id %></buldingId>
+            <floorNumber><%= floor_number %></floorNumber>
+            <instructions><%= instructions %></instructions>
+            <sendNotification><%= notify_receiver ? "1" : "0" %></sendNotification>
+        </receiver>
+        <serviceCode><%= service_code %></serviceCode>
+        <saturdayDelivery><%= saturday_delivery ? "1" : "0" %></saturdayDelivery>
+        <quantity>1</quantity>
+        <parcelsRequest>
+            <parcelRequest>
+              <sequenceNumber>1</sequenceNumber>
+              <customerReference></customerReference>
+              <weight><%= weight %></weight>
+            </parcelRequest>
+          </parcelsRequest>
+      </parameters>
+  </cxf:expeditionCreation>
+</soapenv:Body>

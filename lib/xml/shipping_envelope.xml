@@ -1,0 +1,6 @@
+<soapenv:Envelope
+  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:cxf="http://cxf.ws.app.tnt.fr/">
+  <%= header %>
+  <%= body %>
+</soapenv:Envelope>
