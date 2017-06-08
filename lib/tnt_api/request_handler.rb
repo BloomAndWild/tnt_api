@@ -12,20 +12,24 @@ module TNTApi
     end
 
     def request
-      xml = build_xml(attrs.merge(security_attrs))
+      xml = xml_builer(attrs.merge(security_attrs)).build
 
       tnt_response = savon.call(request_name, xml: xml)
       TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
     rescue Savon::SOAPFault => e
-      raise TNTApi::TntError.new(xml: e.xml, error_code: e.http.code)
+      raise TNTApi::TntError.new(
+        xml: e.xml,
+        attrs: xml_builer.to_h.except(*security_attrs.keys),
+        error_code: e.http.code
+      )
     end
 
     def config
       Client.config
     end
 
-    def build_xml(attrs)
-      TNTApi::XMLBuilder.new(request_name, attrs, request_type).build
+    def xml_builer(attrs={})
+      @xml_builder ||= TNTApi::XMLBuilder.new(request_name, attrs, request_type)
     end
 
     def savon

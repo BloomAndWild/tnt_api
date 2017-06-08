@@ -22,7 +22,7 @@ describe TNTApi::RequestHandler do
       first_name: "Helene",
       last_name: "POCHET",
       address_line1: "640 chemin de Saint Julien",
-      address_line2: "",
+      address_line2: "to be encoded: ~",
       zip_code: "19290",
       city: "MILLEVACHES",
       email: "test@hotmail.fr",
@@ -121,6 +121,16 @@ describe TNTApi::RequestHandler do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
             }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not valid.")
+          end
+        end
+
+        it "should assign request attributes for debugging" do
+          VCR.use_cassette('expedition_creation_with_invalid_attributes') do
+            begin
+              handler.request(:expedition_creation, invalid_attributes)
+            rescue TNTApi::TntError => error
+              expect(error.attributes[:address_line2]).to eq("to be encoded: &amp;#126;")
+            end
           end
         end
 

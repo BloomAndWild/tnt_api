@@ -12,14 +12,14 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Jun 2017 12:39:20 GMT
+      - Thu, 08 Jun 2017 09:56:55 GMT
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 07 Jun 2017 12:39:20 GMT
+      - Thu, 08 Jun 2017 09:56:56 GMT
       Content-Type:
       - text/xml
       X-Ua-Compatible:
@@ -902,7 +902,7 @@ http_interactions:
           </wsdl:service>
         </wsdl:definitions>
     http_version: 
-  recorded_at: Wed, 07 Jun 2017 12:39:20 GMT
+  recorded_at: Thu, 08 Jun 2017 09:56:55 GMT
 - request:
     method: post
     uri: http://www.tnt.fr/service/
@@ -926,7 +926,7 @@ http_interactions:
           <cxf:expeditionCreation>
               <parameters>
                 <accountNumber>06324676</accountNumber>
-                <shippingDate>2017-06-06</shippingDate>
+                <shippingDate>2017-06-07</shippingDate>
                 <labelFormat>THERMAL</labelFormat>
                 <sender>
                     <name>TNT EXPRESS FRANCE</name>
@@ -944,7 +944,7 @@ http_interactions:
                     <contactFirstName>Helene</contactFirstName>
                     <contactLastName>POCHET</contactLastName>
                     <address1></address1>
-                    <address2></address2>
+                    <address2>to be encoded: &amp;#126;</address2>
                     <zipCode>19290</zipCode>
                     <city>MILLEVACHES</city>
                     <emailAddress>test@hotmail.fr</emailAddress>
@@ -976,20 +976,20 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Wed, 07 Jun 2017 12:39:20 GMT
+      - Thu, 08 Jun 2017 09:56:55 GMT
       Soapaction:
       - '"expeditionCreation"'
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '2211'
+      - '2236'
   response:
     status:
       code: 500
       message: Erreur Interne de Servlet
     headers:
       Date:
-      - Wed, 07 Jun 2017 12:39:20 GMT
+      - Thu, 08 Jun 2017 09:56:56 GMT
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
@@ -1005,5 +1005,5 @@ http_interactions:
         The field 'shippingDate' is not valid.
         </faultstring><detail><ns1:ServiceException xmlns:ns1="http://cxf.ws.app.tnt.fr/"></ns1:ServiceException></detail></soap:Fault></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Wed, 07 Jun 2017 12:39:20 GMT
+  recorded_at: Thu, 08 Jun 2017 09:56:55 GMT
 recorded_with: VCR 3.0.3
