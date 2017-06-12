@@ -22,7 +22,7 @@ describe TNTApi::RequestHandler do
       first_name: "Helene",
       last_name: "POCHET",
       address_line1: "640 chemin de Saint Julien",
-      address_line2: "",
+      address_line2: "to be encoded: ~",
       zip_code: "19290",
       city: "MILLEVACHES",
       email: "test@hotmail.fr",
@@ -117,11 +117,21 @@ describe TNTApi::RequestHandler do
       end
 
       context "with invalid attributes" do
-        it "raises a TNTApi::TntError error" do
+        it "raises a TNTApi::TNTError error" do
           VCR.use_cassette('expedition_creation_with_invalid_attributes') do
             expect {
               handler.request(:expedition_creation, invalid_attributes)
-            }.to raise_error(TNTApi::TntError, "The field 'shippingDate' is not valid.")
+            }.to raise_error(TNTApi::TNTError, "The field 'shippingDate' is not valid.")
+          end
+        end
+
+        it "should assign request attributes for debugging" do
+          VCR.use_cassette('expedition_creation_with_invalid_attributes') do
+            begin
+              handler.request(:expedition_creation, invalid_attributes)
+            rescue TNTApi::TNTError => error
+              expect(error.attributes[:address_line2]).to eq("to be encoded: &amp;#126;")
+            end
           end
         end
 
@@ -133,12 +143,12 @@ describe TNTApi::RequestHandler do
             )
           end
 
-          it "raises a TNTApi::TntError error with multiple errors in the message" do
+          it "raises a TNTApi::TNTError error with multiple errors in the message" do
             VCR.use_cassette('expedition_creation_with_multiple_invalid_attributes') do
               expect {
                 handler.request(:expedition_creation, invalid_attributes)
               }.to raise_error(
-                TNTApi::TntError,
+                TNTApi::TNTError,
                 "The field 'receiver.address1' is mandatory. The field 'shippingDate' is not valid.",
               )
             end

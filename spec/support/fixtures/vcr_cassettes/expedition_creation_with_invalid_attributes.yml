@@ -944,7 +944,7 @@ http_interactions:
                     <contactFirstName>Helene</contactFirstName>
                     <contactLastName>POCHET</contactLastName>
                     <address1>640 chemin de Saint Julien</address1>
-                    <address2></address2>
+                    <address2>to be encoded: &amp;#126;</address2>
                     <zipCode>19290</zipCode>
                     <city>MILLEVACHES</city>
                     <emailAddress>test@hotmail.fr</emailAddress>
@@ -982,7 +982,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '2237'
+      - '2262'
   response:
     status:
       code: 500

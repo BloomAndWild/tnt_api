@@ -1,5 +1,5 @@
 module TNTApi
-  class TntError < StandardError
+  class TNTError < StandardError
     attr_accessor :xml, :code
 
     def initialize(args)
@@ -7,12 +7,18 @@ module TNTApi
       raise ArgumentError 'error must contain some information' unless args.present?
       @xml = args[:xml]
       @code = args[:error_code]
+      @attrs = args[:attrs]
+
       super(message)
     end
 
     def message
       parser = TNTApi::XMLParser.new
       parser.parse_text(@xml, "faultstring")[0..-2].gsub(/\R/, ' ')
+    end
+
+    def attributes
+      @attrs
     end
   end
 end

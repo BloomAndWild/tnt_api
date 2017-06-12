@@ -87,3 +87,12 @@ service_code
 saturday_delivery
 shipping_date
 weight
+
+### Error handling
+
+If a request fails, a `TNTApi::TNTError` will be raised.
+You can call `.message` on this object to get the error messages from TNT.
+
+You can also call `.attributes` to get the formatted values passed to TNT for debugging.
+
+NOTE: Characters unsupported by the TNT Api are encoded to HTML entities which can push strings over the character limit.
