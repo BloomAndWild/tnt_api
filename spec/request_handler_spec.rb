@@ -38,6 +38,7 @@ describe TNTApi::RequestHandler do
     {
       notify_receiver: false,
       service_code: "JZ",
+      receiver_type: "INDIVIDUAL",
       saturday_delivery: false,
       shipping_date: get_next_day(Date.today, 2),
       weight: 1.0,
