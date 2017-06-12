@@ -16,7 +16,7 @@
             <phoneNumber><%= sender_phone %></phoneNumber>
         </sender>
         <receiver>
-            <type>INDIVIDUAL</type>
+            <type><%= receiver_type %></type>
             <contactFirstName><%= first_name %></contactFirstName>
             <contactLastName><%= last_name %></contactLastName>
             <address1><%= address_line1 %></address1>
