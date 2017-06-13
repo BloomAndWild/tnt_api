@@ -17,6 +17,9 @@
         </sender>
         <receiver>
             <type><%= receiver_type %></type>
+            <% if company_name.present? %>
+              <name><%= company_name %></name>
+            <% end %>
             <contactFirstName><%= first_name %></contactFirstName>
             <contactLastName><%= last_name %></contactLastName>
             <address1><%= address_line1 %></address1>
