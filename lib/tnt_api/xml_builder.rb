@@ -3,11 +3,11 @@ require 'ostruct'
 
 module TNTApi
   class XMLBuilder < OpenStruct
-    attr_reader :request, :type
+    attr_reader :request, :request_type
 
-    def initialize(request, attrs={}, type='shipping')
+    def initialize(request, attrs={}, request_type='shipping')
       @request = request
-      @type = type
+      @request_type = request_type
 
       formatted_attrs = TNTApi::XMLFormatter.format_attrs(attrs)
       super formatted_attrs
@@ -37,7 +37,7 @@ module TNTApi
     end
 
     def envelope
-      build_xml("#{type}_envelope.xml")
+      build_xml("#{request_type}_envelope.xml")
     end
   end
 end
