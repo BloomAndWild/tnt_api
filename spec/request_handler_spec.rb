@@ -21,6 +21,7 @@ describe TNTApi::RequestHandler do
     {
       first_name: "Helene",
       last_name: "POCHET",
+      name: "Helene Pochet",
       address_line1: "640 chemin de Saint Julien",
       address_line2: "to be encoded: ~",
       zip_code: "19290",
@@ -36,9 +37,10 @@ describe TNTApi::RequestHandler do
 
   let(:expedition_attributes) do
     {
+
       notify_receiver: false,
       service_code: "JZ",
-      receiver_type: "INDIVIDUAL",
+      type: "INDIVIDUAL",
       saturday_delivery: false,
       shipping_date: get_next_day(Date.today, 2),
       weight: 1.0,
@@ -68,6 +70,39 @@ describe TNTApi::RequestHandler do
             expect(response.pdf_labels).to_not be_nil
             expect(response.parcel_number).to_not be_nil
             expect(response.tracking_url).to_not be_nil
+          end
+        end
+
+        context "with service code 'JE'" do
+          let(:expedition_attributes) do
+            {
+              company_name: 'Bloom & Wild',
+              notify_receiver: false,
+              service_code: "JE",
+              type: "ENTERPRISE",
+              saturday_delivery: false,
+              shipping_date: get_next_day(Date.today, 2),
+              weight: 1.0,
+            }
+          end
+
+          it "uses a 'name' attribute instead of firstName/lastName" do
+            savon_client = double
+            allow_any_instance_of(TNTApi::RequestHandler).to receive(:savon).and_return(savon_client)
+            allow_any_instance_of(TNTApi::ResponseHandler).to receive(:handle_response)
+
+            expect(savon_client).to receive(:call).with(:expedition_creation, xml: a_string_including("Helene Pochet"))
+            handler.request(:expedition_creation, valid_attributes)
+          end
+
+          it "returns successful response" do
+            VCR.use_cassette('enterprise_expedition_creation_with_valid_attributes') do
+              response = handler.request(:expedition_creation, valid_attributes)
+
+              expect(response.pdf_labels).to_not be_nil
+              expect(response.parcel_number).to_not be_nil
+              expect(response.tracking_url).to_not be_nil
+            end
           end
         end
       end
