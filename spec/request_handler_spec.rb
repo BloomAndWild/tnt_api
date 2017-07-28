@@ -54,6 +54,9 @@ describe TNTApi::RequestHandler do
   let(:valid_attributes) { attributes }
   let(:invalid_attributes) { attributes.merge({ shipping_date: Date.yesterday }) }
 
+  let(:valid_parcel_number) { "9412345000000025" }
+  let(:invalid_parcel_number) { "?" }
+
   before do
     configure_client
   end
@@ -152,6 +155,40 @@ describe TNTApi::RequestHandler do
                 "The field 'receiver.address1' is mandatory. The field 'shippingDate' is not valid.",
               )
             end
+          end
+        end
+      end
+    end
+
+    context "when request name = 'tracking_by_consignment'" do
+      context "with valid parcel number" do
+        it "returns successful response" do
+          VCR.use_cassette('tracking_by_consignment_with_valid_parcel_number') do
+            response = handler.request(:tracking_by_consignment, { parcel_number: valid_parcel_number })
+            expect(response).to_not be_nil
+          end
+        end
+      end
+      context "with invalid parcel number" do
+        it "returns error response" do
+          VCR.use_cassette('tracking_by_consignment_with_invalid_parcel_number') do
+            expect {
+              handler.request(:tracking_by_consignment, { parcel_number: invalid_parcel_number })
+            }.to raise_error(
+              TNTApi::TNTError,
+              "The field 'parcelNumber' has an invalid size. Valid is 16 characters.",
+            )
+          end
+        end
+      end
+      context "without parcel number" do
+        it "returns error response" do
+          VCR.use_cassette('tracking_by_consignment_without_parcel_number') do
+            expect {
+              handler.request(:tracking_by_consignment, { parcel_number: ""})
+            }.to raise_error(
+              TNTApi::TNTError, "The field 'parcelNumber' is mandatory.",
+            )
           end
         end
       end

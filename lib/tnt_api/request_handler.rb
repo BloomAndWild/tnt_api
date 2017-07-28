@@ -54,6 +54,8 @@ module TNTApi
       case request_name
       when :expedition_creation
         'shipping'
+      when :tracking_by_consignment
+        'shipping'
       else
         error_message = "Request type #{request_name} is not supported"
         config.logger&.debug(error_message)

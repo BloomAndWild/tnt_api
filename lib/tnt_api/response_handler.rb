@@ -5,6 +5,8 @@ module TNTApi
         case type
         when :expedition_creation
           ExpeditionCreationResponse.new(response)
+        when :tracking_by_consignment
+          TrackingByConsignmentResponse.new(response)
         end
       end
     end
