@@ -88,6 +88,15 @@ saturday_delivery
 shipping_date
 weight
 
+### Tracking by consignment (tracking using parcel number) request
+
+```
+TNTApi::RequestHandler.request(
+  :tracking_by_consignment,
+  { parcel_number: "9412345000000025" },
+)
+```
+
 ### Error handling
 
 If a request fails, a `TNTApi::TNTError` will be raised.
