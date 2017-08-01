@@ -12,14 +12,14 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Fri, 28 Jul 2017 12:11:15 GMT
+      - Tue, 01 Aug 2017 16:41:59 GMT
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 28 Jul 2017 12:11:14 GMT
+      - Tue, 01 Aug 2017 16:41:59 GMT
       Content-Type:
       - text/xml
       X-Ua-Compatible:
@@ -902,7 +902,7 @@ http_interactions:
           </wsdl:service>
         </wsdl:definitions>
     http_version: 
-  recorded_at: Fri, 28 Jul 2017 12:11:15 GMT
+  recorded_at: Tue, 01 Aug 2017 16:41:59 GMT
 - request:
     method: post
     uri: http://www.tnt.fr/service/
@@ -916,15 +916,15 @@ http_interactions:
           <wsse:Security
             xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
             <wsse:UsernameToken>
-              <wsse:Username>webservices@tnt.fr</wsse:Username>
-              <wsse:Password>test</wsse:Password>
+              <wsse:Username>clementine@bloomandwild.com</wsse:Username>
+              <wsse:Password>BWFR2017</wsse:Password>
             </wsse:UsernameToken>
           </wsse:Security>
         </soapenv:Header>
 
           <soapenv:Body>
           <cxf:trackingByConsignment>
-            <parcelNumber>9412345000000025</parcelNumber>
+            <parcelNumber>7516717000003642</parcelNumber>
           </cxf:trackingByConsignment>
         </soapenv:Body>
 
@@ -935,39 +935,41 @@ http_interactions:
       Accept:
       - "*/*"
       Date:
-      - Fri, 28 Jul 2017 12:11:15 GMT
+      - Tue, 01 Aug 2017 16:41:59 GMT
       Soapaction:
       - '"trackingByConsignment"'
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '607'
+      - '620'
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 28 Jul 2017 12:11:14 GMT
+      - Tue, 01 Aug 2017 16:41:59 GMT
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1496'
+      - '1726'
       X-Ua-Compatible:
       - IE=edge
       Connection:
       - close
     body:
       encoding: UTF-8
-      string: "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><ns1:trackingByConsignmentResponse
-        xmlns:ns1=\"http://cxf.ws.app.tnt.fr/\"><Parcel><accountNumber>06324676</accountNumber><consignmentNumber>9412345000000025</consignmentNumber><events><arrivalCenter></arrivalCenter><arrivalCenterPEX></arrivalCenterPEX><arrivalDate></arrivalDate><deliveryDate></deliveryDate><deliveryDepartureCenter></deliveryDepartureCenter><deliveryDepartureCenterPEX></deliveryDepartureCenterPEX><deliveryDepartureDate></deliveryDepartureDate><processCenter>LYON</processCenter><processCenterPEX>0101</processCenterPEX><processDate>2010-07-01
-        18:15:00</processDate><requestDate>2010-07-01 13:45:00</requestDate></events><longStatus>Votre
-        colis est pris en charge par TNT Express.\r\nDate prévue de livraison : vendredi
-        02 juillet 2010</longStatus><receiver><address1>14 ALLEE JEAN BAPTISTE PREUX</address1><address2>PARC
-        D'ACTIVITE DU VAL DE SEINE</address2><city>ALFORTVILLE</city><zipCode>94141</zipCode><country>FR</country><department>94</department><name>TNT-CRETEIL</name></receiver><reference>colis10</reference><sender><address1>59
-        AVENUE LECLERC</address1><city>LYON 07</city><zipCode>69007</zipCode><country>FR</country><department>69</department><name>TNT
-        EXPRESS France</name></sender><service>10:00 Express</service><shortStatus>En
-        cours d'acheminement</shortStatus><statusCode></statusCode><weight>2.0</weight></Parcel></ns1:trackingByConsignmentResponse></soap:Body></soap:Envelope>"
+      string: '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns1:trackingByConsignmentResponse
+        xmlns:ns1="http://cxf.ws.app.tnt.fr/"><Parcel><accountNumber>08994183</accountNumber><consignmentNumber>7516717000003642</consignmentNumber><events><arrivalCenter>ALFORTVILLE</arrivalCenter><arrivalCenterPEX>0401</arrivalCenterPEX><arrivalDate>2017-08-01
+        04:46:00</arrivalDate><deliveryDate>2017-08-01 10:43:00</deliveryDate><deliveryDepartureCenter>ALFORTVILLE</deliveryDepartureCenter><deliveryDepartureCenterPEX>0401</deliveryDepartureCenterPEX><deliveryDepartureDate>2017-08-01
+        07:56:00</deliveryDepartureDate><processCenter>LE MANS</processCenter><processCenterPEX>0308</processCenterPEX><processDate>2017-07-31
+        18:38:00</processDate><requestDate>2017-07-31 02:25:00</requestDate></events><longStatus>Votre
+        colis a été livré le 01/08/2017 à 10:43</longStatus><longStatus>Réceptionné
+        par : stella et dot  - Stella &amp; Dot France</longStatus><primaryPODUrl>https://portail.tnt.oxiged.com/Display.tnt?CDBEAEEKEFFAHCFKEFFDFCFBEFGDEFECGGFJHFEAEEBGAECEAAESFDFKEJGEFMEDFAFRFCCAAJBMADDSARBHHSBFAHDKEJDFBNBFAJFPFHENHN</primaryPODUrl><receiver><address1>19
+        Rue Vivienne</address1><city>PARIS 02</city><zipCode>75002</zipCode><country>FR</country><department>75</department><name>Stella
+        &amp; Dot France</name></receiver><reference></reference><sender><address1>Les
+        Mardelles</address1><city>ALLONNES</city><zipCode>72700</zipCode><country>FR</country><department>72</department><name>Bloom
+        &amp; Wild/Bigot</name></sender><service>Express LPSE</service><shortStatus>Livré</shortStatus><statusCode>000</statusCode><weight>1.2</weight></Parcel></ns1:trackingByConsignmentResponse></soap:Body></soap:Envelope>'
     http_version: 
-  recorded_at: Fri, 28 Jul 2017 12:11:15 GMT
+  recorded_at: Tue, 01 Aug 2017 16:41:59 GMT
 recorded_with: VCR 3.0.3

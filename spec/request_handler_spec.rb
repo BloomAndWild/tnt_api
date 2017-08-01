@@ -162,10 +162,51 @@ describe TNTApi::RequestHandler do
 
     context "when request name = 'tracking_by_consignment'" do
       context "with valid parcel number" do
-        it "returns successful response" do
+        it "returns successful response", :focus do
           VCR.use_cassette('tracking_by_consignment_with_valid_parcel_number') do
-            response = handler.request(:tracking_by_consignment, { parcel_number: valid_parcel_number })
-            expect(response).to_not be_nil
+            response = handler.request(:tracking_by_consignment, { parcel_number: "7516717000003642" })
+            expect(response).to be_a TNTApi::TrackingByConsignmentResponse
+
+            expect(response.tracking_data).to eq(
+              :account_number => "08994183",
+              :consignment_number => "7516717000003642",
+              :events => {
+                :arrival_center => "ALFORTVILLE",
+                :arrival_center_pex => "0401",
+                :arrival_date => "2017-08-01 04:46:00",
+                :delivery_date => "2017-08-01 10:43:00",
+                :delivery_departure_center => "ALFORTVILLE",
+                :delivery_departure_center_pex => "0401",
+                :delivery_departure_date => "2017-08-01 07:56:00",
+                :process_center => "LE MANS",
+                :process_center_pex => "0308",
+                :process_date => "2017-07-31 18:38:00",
+                :request_date => "2017-07-31 02:25:00"
+              },
+              :long_status => ["Votre colis a été livré le 01/08/2017 à 10:43", "Réceptionné par : stella et dot  - Stella & Dot France"],
+              :primary_pod_url => "https://portail.tnt.oxiged.com/Display.tnt?CDBEAEEKEFFAHCFKEFFDFCFBEFGDEFECGGFJHFEAEEBGAECEAAESFDFKEJGEFMEDFAFRFCCAAJBMADDSARBHHSBFAHDKEJDFBNBFAJFPFHENHN",
+              :receiver => {
+                :address1 => "19 Rue Vivienne",
+                :city => "PARIS 02",
+                :zip_code => "75002",
+                :country => "FR",
+                :department => "75",
+                :name => "Stella & Dot France"
+              },
+              :reference => nil,
+              :sender => {
+                :address1 => "Les Mardelles",
+                :city => "ALLONNES",
+                :zip_code => "72700",
+                :country => "FR",
+                :department => "72",
+                :name => "Bloom & Wild/Bigot"
+              },
+              :service => "Express LPSE",
+              :short_status => "Livré",
+              :status_code => "000",
+              :weight => "1.2"
+            )
           end
         end
       end
