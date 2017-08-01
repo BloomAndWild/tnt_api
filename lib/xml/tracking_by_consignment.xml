@@ -1,0 +1,5 @@
+<soapenv:Body>
+  <cxf:trackingByConsignment>
+    <parcelNumber><%= parcel_number %></parcelNumber>
+  </cxf:trackingByConsignment>
+</soapenv:Body>
