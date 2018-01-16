@@ -35,7 +35,7 @@
             <sendNotification><%= notify_receiver ? "1" : "0" %></sendNotification>
         </receiver>
         <serviceCode><%= service_code %></serviceCode>
-        <saturdayDelivery><%= saturday_delivery ? "1" : "0" %></saturdayDelivery>
+        <% if saturday_delivery %><saturdayDelivery>1</saturdayDelivery><% end %>
         <quantity>1</quantity>
         <parcelsRequest>
             <parcelRequest>

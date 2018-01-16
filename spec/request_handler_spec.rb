@@ -51,6 +51,14 @@ describe TNTApi::RequestHandler do
       .merge(expedition_attributes)
   end
 
+  let(:friday_attributes) {
+    attributes.merge(saturday_delivery: false)
+  }
+
+  let(:saturday_attributes) {
+    attributes.merge(saturday_delivery: true)
+  }
+
   let(:valid_attributes) { attributes }
   let(:invalid_attributes) { attributes.merge({ shipping_date: Date.yesterday }) }
 
@@ -158,11 +166,41 @@ describe TNTApi::RequestHandler do
           end
         end
       end
+
+      context "saturday delivery field" do
+        it "non-saturday delivery does not have the saturdaydelivery field at all" do
+          VCR.use_cassette('expedition_creation_for_friday_delivery') do
+            obj = handler.new(:expedition_creation, friday_attributes)
+
+            expect(obj.xml).to_not match(/<saturdayDelivery>.*<\/saturdayDelivery>/)
+
+            response = obj.request
+
+            expect(response.pdf_labels).to_not be_nil
+            expect(response.parcel_number).to_not be_nil
+            expect(response.tracking_url).to_not be_nil
+          end
+        end
+
+        it "saturday delivery has the saturday delivery flag set to 1" do
+          VCR.use_cassette('expedition_creation_for_saturday_delivery') do
+            obj = handler.new(:expedition_creation, saturday_attributes)
+
+            expect(obj.xml).to match("<saturdayDelivery>1</saturdayDelivery>")
+
+            response = obj.request
+
+            expect(response.pdf_labels).to_not be_nil
+            expect(response.parcel_number).to_not be_nil
+            expect(response.tracking_url).to_not be_nil
+          end
+        end
+      end
     end
 
     context "when request name = 'tracking_by_consignment'" do
       context "with valid parcel number" do
-        it "returns successful response", :focus do
+        it "returns successful response" do
           VCR.use_cassette('tracking_by_consignment_with_valid_parcel_number') do
             response = handler.request(:tracking_by_consignment, { parcel_number: "7516717000003642" })
             expect(response).to be_a TNTApi::TrackingByConsignmentResponse

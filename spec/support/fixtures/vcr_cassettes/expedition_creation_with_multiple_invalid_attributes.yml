@@ -956,7 +956,6 @@ http_interactions:
                     <sendNotification>0</sendNotification>
                 </receiver>
                 <serviceCode>JZ</serviceCode>
-                <saturdayDelivery>0</saturdayDelivery>
                 <quantity>1</quantity>
                 <parcelsRequest>
                     <parcelRequest>

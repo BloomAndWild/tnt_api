@@ -12,8 +12,6 @@ module TNTApi
     end
 
     def request
-      xml = xml_builder(attrs.merge(security_attrs)).build
-
       tnt_response = savon.call(request_name, xml: xml)
       TNTApi::ResponseHandler.handle_response(tnt_response, request_name)
     rescue Savon::SOAPFault => e
@@ -30,6 +28,10 @@ module TNTApi
 
     def xml_builder(attrs={})
       @xml_builder ||= TNTApi::XMLBuilder.new(request_name, attrs, request_type)
+    end
+
+    def xml
+      xml_builder(attrs.merge(security_attrs)).build
     end
 
     def savon

@@ -84,7 +84,7 @@ notify_receiver
 expedition attributes:
 
 service_code
-saturday_delivery
+saturday_delivery (set if Saturday Delivery is required)
 shipping_date
 weight
 
