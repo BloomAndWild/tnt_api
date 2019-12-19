@@ -34,7 +34,7 @@ module TNTApi
 
     def savon
       Savon.client(
-        adapter: :httpclient,
+        adapter: config.adapter || :httpclient,
         wsdl: wsdl,
         endpoint: endpoint,
         namespace: endpoint,
