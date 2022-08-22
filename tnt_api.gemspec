@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake", "~> 12.0"
-  spec.add_dependency "savon", "~> 2.10"
+  spec.add_dependency "savon", ">= 2.13"
   spec.add_dependency "httpclient", "~> 2.3"
   spec.add_development_dependency "dotenv", "~> 2.0"
   spec.add_dependency "activesupport", ">= 4"
